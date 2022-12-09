@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        function checkprime(p) { 
+            event.preventDefault();
+
+            let isPrime = true;
+
+            // check if number is equal to 1
+            if (p === 1) {
+                document.getElementById("primecheck").innerHTML = "1 is neither prime nor composite number."
+
+            }
+
+            // check if number is greater than 1
+            else if (p > 1) {
+
+                // looping through 2 to number-1
+                for (let i = 2; i < p; i++) {
+                    if (p % i == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+
+                if (isPrime) {
+                    //nextPrime(num1);
+                    return true;
+
+                } else {
+                    return false;
+                }
+            }
+
+            // check if number is less than 1
+            else {
+                return false;
+            }
+        }
+
+        function displayPrimeValid() {
+            var a = parseInt(document.getElementById("num1").value);
+            var p = checkprime(a)
+            if (p === true) {
+                document.getElementById("primecheck").innerHTML = a + " is a Prime No.";
+                var nxt = nextPrime(a);
+                document.getElementById("nxtprime").innerHTML = "Next Prime No is :" + nxt;
+                document.getElementById("difference").innerHTML = "Difference :" + (parseInt(nxt) - parseInt(a));
+
+
+
+
+
+
+
+            } else {
+                document.getElementById("primecheck").innerHTML = a + " is not a Prime No.";
+
+            }
+        }
+
+
+        function nextPrime(N) {
+
+            let prime = N;
+
+            let found = false;
+
+
+
+
+            while (!found) {
+
+                prime++;
+
+
+                if (checkprime(prime))
+
+                    found = true;
+
+            }
+
+
+            return prime;
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="displayPrimeValid()">
+        <label>Enter Number </label><input type="text" name="num1" id="num1">
+        <input type="submit" value="Check">
+    </form>
+
+</body>
+<h1 id="primecheck"></h1>
+<h1 id="nxtprime"></h1>
+<h1 id="difference"></h1>
+
+</html>
